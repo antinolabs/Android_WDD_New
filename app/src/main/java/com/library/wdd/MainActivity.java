@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final CustomButton relativeLayout = new CustomButton(MainActivity.this);
 
-        CustomButton.KeyAccess("","","","git revert -m 1 <commit-hash> ");
+        CustomButton.KeyAccess("","","","");
         final ConstraintLayout constraintLayout =  findViewById(R.id.parent);
         final TextView textView = findViewById(R.id.tvClick);
 
