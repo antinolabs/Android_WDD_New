@@ -94,7 +94,7 @@ allprojects {
 Add dependency in your build.gradle.
 
 ```bash
-	         implementation 'com.github.antinolabs:WDD_Android_Lib:1.1'
+	         'implementation 'com.github.antinolabs:Android_WDD_1.0'
 ```
 
 ## Permissions
@@ -125,7 +125,7 @@ Add permissions in your manifest.xml. Request permission from your app if you ar
  ```
  
  ## Contributing
-
+ [Antino Labs](https://www.antino.io/)
 - If you **need help** or you'd like to **ask a general question**
 - If you **found a bug**, open a service request.
 - If you **have a feature request**, open a service request.
