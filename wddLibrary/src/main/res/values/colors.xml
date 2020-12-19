@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FA0043</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="backgroungColor">#ffffff</color>
+    <color name="fun_dialog_background">#ffffff</color>
+    <color name="fun_camera_primary_color">#09BE5D</color>
+    <color name="fun_dialog_sub_text_color">#737373</color>
+</resources>

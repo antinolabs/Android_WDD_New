@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/backgroungColor"
+    android:layout_height="match_parent"
+    tools:context=".WDDStarter">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="WDD"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="40dp">
+
+    </TextView>
+
+    <ImageView
+        android:id="@+id/wdd_starter_symbol"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+       android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/image">
+
+    </ImageView>
+
+
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/button_selector"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/wdd_started_btn"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="120dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="Start"
+        android:textColor="@android:color/black">
+
+    </Button>
+
+</RelativeLayout>

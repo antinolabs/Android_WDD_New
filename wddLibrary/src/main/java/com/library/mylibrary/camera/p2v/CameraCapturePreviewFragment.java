@@ -1,0 +1,140 @@
+package com.library.mylibrary.camera.p2v;
+
+
+import android.annotation.SuppressLint;
+import android.media.MediaPlayer;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.VideoView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+
+
+import com.library.mylibrary.R;
+import com.library.mylibrary.subscaleview.ImageSource;
+import com.library.mylibrary.subscaleview.SubsamplingScaleImageView;
+
+import java.io.File;
+
+/**
+ * Created by HyFun on 2019/10/14.
+ * Email: 775183940@qq.com
+ * Description: 预览拍摄的照片和视频的fragment
+ */
+@SuppressLint("ValidFragment")
+public class CameraCapturePreviewFragment extends BaseFragment {
+
+
+    private SubsamplingScaleImageView viewImage;
+    private ImageView viewImageBack;
+    private TextView viewTextConfirm;
+    private VideoView viewVideoView;
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+
+    private int type;
+    private String filePath;
+
+    public static CameraCapturePreviewFragment newInstance(int type, String filePath) {
+        CameraCapturePreviewFragment fragment = new CameraCapturePreviewFragment();
+        Bundle args = new Bundle();
+        args.putInt(ARG_PARAM1, type);
+        args.putString(ARG_PARAM2, filePath);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            this.type = getArguments().getInt(ARG_PARAM1);
+            this.filePath = getArguments().getString(ARG_PARAM2);
+        }
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        final View view = LayoutInflater.from(getContext()).inflate(R.layout.camera_fragment_capture_preview, container, false);
+        viewImage = view.findViewById(R.id.camera_capture_preview_image);
+        viewVideoView = view.findViewById(R.id.camera_capture_preview_video);
+        viewImageBack = view.findViewById(R.id.camera_capture_preview_iv_back);
+        viewTextConfirm = view.findViewById(R.id.camera_capture_preview_tv_confirm);
+
+        // 根据类型
+        if (type == Util.Const.类型_照片) {
+            viewImage.setVisibility(View.VISIBLE);
+            // 查看图片
+            viewImage.setMinimumDpi(50);
+            viewImage.setDoubleTapZoomStyle(SubsamplingScaleImageView.ZOOM_FOCUS_CENTER);
+            viewImage.setImage(ImageSource.uri(Uri.fromFile(new File(filePath))));
+        } else {
+            viewVideoView.setVisibility(View.VISIBLE);
+            // 播放视频
+            viewVideoView.setVideoPath(filePath);
+            // viewVideoView.setMediaController(new MediaController(getContext()));
+            viewVideoView.setMediaController(null);
+            viewVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    viewVideoView.start();
+                }
+            });
+
+            viewVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    viewVideoView.start();
+                }
+            });
+
+        }
+
+        // ——————————————————————————————————点击事件——————————————————————————————————————
+        viewImageBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        viewTextConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 通知刷新相册
+                Util.notifyAlbumDataChanged(getContext(), new File(filePath));
+                // 确认并返回
+                ((CameraCaptureActivity) getActivity()).returnPath(type, filePath);
+            }
+        });
+
+
+        return view;
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Util.setFullScreen(getActivity());
+    }
+
+    @Override
+    public void finish() {
+        // 删除原来的
+        File file = new File(filePath);
+        if (file.exists()) {
+            file.delete();
+        }
+        getActivity().getSupportFragmentManager().popBackStack();
+    }
+}

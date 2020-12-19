@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="PickerEditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:imeOptions">actionNext</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="Theme.AppCompat.Light.NoActionBar.FullScreen" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <declare-styleable name="FunWaveView">
+        <attr name="waveColor" format="color"/>
+        <attr name="baselineColor" format="color"/>
+        <attr name="maxValue" format="integer"/>
+        <attr name="waveStokeWidth" format="dimension"/>
+        <attr name="invalidateTime" format="integer"/>
+        <attr name="space" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="CaptureButton">
+        <!--外圆颜色-->
+        <attr name="outCircleColor" format="color"/>
+        <!--内圆颜色-->
+        <attr name="innerCircleColor" format="color"/>
+        <!--进度条颜色-->
+        <attr name="progressColor" format="color"/>
+        <!--录制时间-->
+        <attr name="maxSeconds" format="integer"/>
+    </declare-styleable>
+</resources>
