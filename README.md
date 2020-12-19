@@ -94,7 +94,7 @@ allprojects {
 Add dependency in your build.gradle.
 
 ```bash
-	         'implementation 'com.github.antinolabs:Android_WDD_1.0'
+	         'implementation 'com.github.antinolabs:Android_WDD_New:Tag'
 ```
 
 ## Permissions
